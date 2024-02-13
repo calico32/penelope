@@ -1,0 +1,35 @@
+{
+  "name": "penelope",
+  "module": "lib/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --env-file .env.development --hot lib/index.ts",
+    "watch": "bun --env-file .env.development --watch lib/index.ts",
+    "prod": "bun --env-file .env.production lib/index.ts",
+    "image": "docker build -t ghcr.io/calico32/penelope .",
+    "push": "docker push ghcr.io/calico32/penelope"
+  },
+  "devDependencies": {
+    "@types/common-tags": "^1.8.4",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^0.8.0",
+    "@elysiajs/html": "^0.8.0",
+    "@elysiajs/swagger": "^0.8.3",
+    "@prisma/client": "^5.9.1",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.16",
+    "common-tags": "^1.8.2",
+    "cssnano": "^6.0.3",
+    "elysia": "^0.8.9",
+    "elysia-compression": "^0.0.7",
+    "elysia-tailwind": "1.0.9",
+    "postcss": "^8.4.33",
+    "prisma": "^5.9.1",
+    "tailwindcss": "^3.4.1"
+  }
+}

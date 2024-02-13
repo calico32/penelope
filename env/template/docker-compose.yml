@@ -1,0 +1,42 @@
+name: template
+
+x-config:
+  global:
+    - &network penelope-environment-template
+  gateway:
+    - &gateway_addr 10.0.0.1
+  attacker:
+    - &attacker_addr 10.0.0.2
+    - &attacker_mac 02:42:0a:00:00:02
+  fileserver:
+    - &fileserver_addr 10.0.0.3
+    - &fileserver_mac 02:42:0a:00:00:03
+
+services:
+  attacker:
+    build: ../attacker
+    mac_address: *attacker_mac
+    networks:
+      *network :
+        ipv4_address: *attacker_addr
+
+  fileserver:
+    mac_address: *fileserver_mac
+    build: ../fileserver
+    networks:
+      *network :
+        ipv4_address: *fileserver_addr
+
+networks:
+  *network :
+    name: *network
+    driver: bridge
+    internal: true
+    attachable: true
+    enable_ipv6: false
+    labels:
+      penelope.environment: ${COMPOSE_PROJECT_NAME}
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
+          gateway: *gateway_addr

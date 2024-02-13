@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+main {
+  --distance: 30px;
+  --radius: 80px;
+  --color: #18181b99;
+  box-shadow: var(--distance) var(--distance) var(--radius) var(--color),
+    calc(-1 * var(--distance)) var(--distance) var(--radius) var(--color),
+    var(--distance) calc(-1 * var(--distance)) var(--radius) var(--color),
+    calc(-1 * var(--distance)) calc(-1 * var(--distance)) var(--radius) var(--color);
+}
